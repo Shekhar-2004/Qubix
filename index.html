@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Qubix</title>
-    </head>
-    <body>
-        <p>
-            Your Friendly Neighborhood Developers<br>
-            ... Coming Soon
-        </p>
-    </body>
+<head>
+    <title>Qubix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e0e0e;
+            color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        #countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            background: #1f1f1f;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <p>
+        Your Friendly Neighborhood Developers<br>
+        ... Coming Soon
+    </p>
+    <div id="countdown">Loading countdown...</div>
+
+    <script>
+        // Set the target launch date and time
+        const launchDate = new Date("June 5, 2025 12:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const diff = launchDate - now;
+
+            if (diff < 0) {
+                document.getElementById("countdown").innerHTML = "🚀 We're live!";
+                clearInterval(countdown);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            document.getElementById("countdown").innerHTML =
+                `⏳ Launching in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+    </script>
+</body>
 </html>
